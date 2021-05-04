@@ -35,7 +35,46 @@ export const get = (url, query, token) => {
       encodeURI(url + (query || '')),
       token && {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${ token }`,
+        },
+      },
+    );
+
+  return req.then(handleSuccess).catch(handleError);
+};
+
+export const getById = (url, id, token) => {
+  const req = axios.get(
+    encodeURI(`${ url }/${ id || '' }`),
+    token && {
+      headers: {
+        Authorization: `Bearer ${ token }`,
+      },
+    },
+  );
+  return req.then(handleSuccess).catch(handleError);
+};
+
+export const postReq = (url, query, token) => {
+  const req = axios.post(
+    encodeURI(url + (query || '')),
+    token && {
+      headers: {
+        Authorization: `Bearer ${ token }`,
+      },
+    },
+  );
+
+  return req.then(handleSuccess).catch(handleError);
+};
+
+export const putReq = (url, query, token) => {
+  const req = axios
+    .get(
+      encodeURI(url + (query || '')),
+      token && {
+        headers: {
+          Authorization: `Bearer ${ token }`,
         },
       },
     );
